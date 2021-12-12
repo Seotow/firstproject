@@ -491,12 +491,10 @@
 .header__logo-link {
     text-decoration: none;
     outline: none;
-}
-
-.header__logo-img {
-    width: 162px;
-    height: 50px;
-
+    box-sizing: border-box;
+    font-size: 32px;
+    color: #fff;
+    line-height: 32px;
 }
 
 /* Header search */
