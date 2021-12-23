@@ -99,7 +99,7 @@ CREATE TABLE `customers` (
 CREATE TABLE `details_bills` (
   `bill_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `quantily` int(11) NOT NULL
+  `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
