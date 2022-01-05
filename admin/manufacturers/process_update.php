@@ -23,7 +23,7 @@ mysqli_query($connection, $sql);
 $error = mysqli_error($connection);
 session_start();
 if(empty($error)) {
-    $_SESSION['success'] = 'Xóa thành công';
+    $_SESSION['success'] = 'Sửa thành công';
     header('location:./index.php');
 } else {
     $_SESSION['error'] = 'Lỗi truy vấn';

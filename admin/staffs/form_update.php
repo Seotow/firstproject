@@ -119,7 +119,12 @@
 
     </div>
 
+    <div id="toast"></div>
+
     <script src="../../assets/js/validator.js"></script>
+    <script src="../../assets/js/toast.js"></script>
+
+
     <script>
         Validator('#form_update-staff')
     </script>

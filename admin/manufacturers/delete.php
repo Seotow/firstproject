@@ -1,7 +1,7 @@
 <?php 
 
 if(empty($_GET['id'])){
-    $_SESSION['error'] = 'Phải truyền mã để sửa';
+    $_SESSION['error'] = 'Phải truyền mã để xóa';
     header('location:index.php');
     exit;
 };

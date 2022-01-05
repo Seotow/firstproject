@@ -41,8 +41,7 @@
                         <th class="table-form-thead">Ngày sinh</th>
                         <th class="table-form-thead">Số điện thoại</th>
                         <th class="table-form-thead">Địa chỉ</th>
-                        <th class="table-form-thead " >Email</th>
-                        <th class="table-form-thead">Mật khẩu</th>
+                        <th class="table-form-thead">Email</th>
                         <th class="table-form-thead">Cấp độ</th>
                         <th class="table-form-thead">Sửa</th>
                         <th class="table-form-thead">Xóa</th>
@@ -66,7 +65,6 @@
                         <td class="table-form-item"><?php echo $each['phone'] ?></td>
                         <td class="table-form-item"><?php echo $each['address'] ?></td>
                         <td class="table-form-item"><?php echo $each['email'] ?></td>
-                        <td class="table-form-item"><?php echo $each['password'] ?></td>
                         <td class="table-form-item"><?php 
                             if($each['level'] == 0){
                                 echo 'Nhân viên';
@@ -94,35 +92,8 @@
 
     <script src="../../assets/js/toast.js"></script>
 
-    <?php 
-        if(isset($_SESSION['error'])){
-            $error = $_SESSION['error'];
-    
-            echo "
-                <script type=\"text/javascript\">
-                    showErrorMessage('$error');
-                </script>
-            ";
+    <?php include '../../show_message.php' ?>
 
-            unset($_SESSION['error']);
-     
-        }
-    ?>
-
-    <?php 
-        if(isset($_SESSION['success'])){
-            $success = $_SESSION['success'];
-   
-            echo "
-                <script type=\"text/javascript\">
-                    showSuccessMessage('$success')
-                </script>
-            ";
-
-            unset($_SESSION['success']);
-
-        }
-    ?>
 
 </body>
 </html>

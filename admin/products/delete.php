@@ -1,7 +1,9 @@
 <?php 
 
 if(empty($_GET['id'])){
-    header('location:index.php?error=Phải truyền mã để xóa');
+    session_start();
+    $_SESSION['error'] = 'Phải truyền mã để xóa';
+    header('location:index.php');
     exit;
 };
 
@@ -12,5 +14,9 @@ $sql = "delete from products where id = '$id'";
 
 
 mysqli_query($connection, $sql);
-header('location:./index.php?success=Xóa thành công');
+session_start();
+
+
+$_SESSION['success'] = 'Xóa thành công';
+header('location:./index.php');
 mysqli_close($connection);

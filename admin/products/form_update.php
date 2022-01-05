@@ -40,15 +40,16 @@
         <div class="card-body">
             <h4 class="card-title">Quản lí sản phẩm > Sửa</h4>
             <div class="table-responsive">
-                <form action="./process_update.php" id="form_update-product" class="table-form" enctype="multipart/form-data" method="post">
+                <form action="./process_update.php" id="form_update-prod" class="table-form" enctype="multipart/form-data" method="post">
                     <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
                     <div class="form-group table-form-group">
                         <label for="name">Tên sản phẩm</label>
-                        <input type="text" name="name" id="name" value="<?php echo $each['name'];?>">
+                        <input rules="required" class="form-control" type="text" name="name" id="name" value="<?php echo $each['name'];?>">
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group table-form-group">
                         <label for="image_new">Ảnh</label>
-                        <input type="file" name="image_new" value="<?php echo $each['image']; ?>">
+                        <input type="file" name="image_new">
                         <label for="image_old">Hoặc giữ ảnh cũ</label>
 
                         <input type="hidden" name="image_old" value="<?php echo $each['image']; ?>"/>
@@ -57,7 +58,8 @@
                     <div class="form-group table-form-group">
                         <label for="price">Giá</label>
 
-                        <input type="text" name="price" value="<?php echo $each['price']; ?>">
+                        <input rules="required" class="form-control" type="text" name="price" value="<?php echo $each['price']; ?>">
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group table-form-group">
                         <label for="description">Mô tả</label>
@@ -109,6 +111,17 @@
     </div>
 
 </div>
+
+    <div id="toast"></div>
+
+    <script src="../../assets/js/validator.js"></script>
+    <script src="../../assets/js/toast.js"></script>
+
+    <script>
+        Validator('#form_update-prod')
+    </script>
+
+    <?php include '../../show_message.php' ?>
     
 </body>
 </html>

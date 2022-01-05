@@ -1,8 +1,13 @@
 <?php 
 
-if(empty($_POST['name'])){
+if( empty($_POST['name'] || empty($_POST['name']) 
+    || empty($_POST['gender']) || empty($_POST['level']) 
+    || empty($_POST['birthdate']) || empty($_POST['phone']) 
+    || empty($_POST['address']) || empty($_POST['email']) 
+    || empty($_POST['password'])
+)){
     session_start();
-    $_SESSION['error'] = 'Vui lòng điền tên để sửa';
+    $_SESSION['error'] = 'Vui lòng điền đầy đủ thông tin';
     header('location:form_insert.php');
 };
 
@@ -20,7 +25,6 @@ require '../connect.php';
 $sql = "insert into staffs(name, gender, birthdate, phone, address, email, password, level)
 values('$name', '$gender', '$birthdate', '$phone', '$address', '$email', '$password', '$level'
 )";
-die($sql);
 
 mysqli_query($connection, $sql);
 mysqli_close($connection);

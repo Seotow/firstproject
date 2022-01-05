@@ -78,36 +78,11 @@
 
 
 </div>
+    <div id="toast"></div>
 
     <script src="../../assets/js/toast.js"></script>
     
-    <?php 
-        if(isset($_SESSION['error'])){
-    
-            echo "
-                <script type=\"text/javascript\">
-                    showErrorMessage();
-                </script>
-            ";
-
-            unset($_SESSION['error']);
-     
-        }
-    ?>
-
-    <?php 
-        if(isset($_SESSION['success'])){
-            
-            echo "
-                <script type=\"text/javascript\">
-                    showSuccessMessage()
-                </script>
-            ";
-
-            unset($_SESSION['success']);
-
-        }
-    ?>
+    <?php include '../../show_message.php' ?>
 
 
 </body>

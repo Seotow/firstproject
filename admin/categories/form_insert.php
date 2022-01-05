@@ -27,8 +27,14 @@
             <div class="table-responsive">
                 <form action="./process_insert.php" id="form_insert-cate" class="table-form" enctype="multipart/form-data" method="POST">
                     <div class="form-group table-form-group">
-                        <label for="">Tên thể loại</label>
-                        <input type="text" name="name" id="name" placeholder="Tên thể loại">
+                        <label for="name">Tên thể loại</label>
+                        <input rules="required" class="form-control" type="text" name="name" id="name" placeholder="Tên thể loại">
+                        <span class="form-message"></span>
+                    </div>
+                    <div class="form-group table-form-group">
+                        <label for="image">Ảnh</label>
+                        <input rules="required" class="form-control" type="file" name="image" id="image" >
+                        <span class="form-message"></span>
                     </div>
                     <button type="submit" class="btn btn-primary">Thêm</button>
                     <button class="btn btn-secondary" onclick="history.back()">Hủy</button>
@@ -39,6 +45,15 @@
 
 
     </div>
+    <div id="toast"></div>
 
+    <script src="../../assets/js/validator.js"></script>
+    <script src="../../assets/js/toast.js"></script>
+
+    <script>
+        Validator('#form_insert-cate')
+    </script>
+
+    <?php include '../../show_message.php' ?>
 </body>
 </html>

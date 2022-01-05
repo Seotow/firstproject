@@ -23,26 +23,36 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Quản lí nhà sản xuất > Thêm</h4>
-            <!-- <p class="card-description">
-                <a class="card-add"href="./form_insert.php">
-                    Thêm nhà sản xuất
-                </a>
-            </p> -->
+    
             <div class="table-responsive">
                 <form action="./process_insert.php" id="form_insert-manu" class="table-form" enctype="multipart/form-data" method="POST">
                     <div class="form-group table-form-group">
-                        <label for="">Tên nhà sản xuất</label>
-                        <input type="text" name="name" id="name" placeholder="Tên nhà sản xuất">
+                        <label for="name">Tên nhà sản xuất</label>
+                        <input rules="required" class="form-control" type="text" name="name" id="name" placeholder="Tên nhà sản xuất">
+                        <span class="form-message"></span>
                     </div>
                     <button type="submit" class="btn btn-primary">Thêm</button>
                     <button class="btn btn-secondary" onclick="history.back()">Hủy</button>
                 </form>
             </div>
         </div>
-        </div>
-
-
     </div>
+
+
+</div>
+
+    <div id="toast"></div>
+
+    <script src="../../assets/js/validator.js"></script>
+    <script src="../../assets/js/toast.js"></script>
+
+    <script>
+        Validator('#form_insert-manu')
+    </script>
+
+    
+    <?php include '../../show_message.php' ?>
+
 
 </body>
 </html>

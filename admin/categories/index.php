@@ -17,7 +17,7 @@
 <?php 
     include '../menu.php';
     require '../connect.php';
-    $sql = "select * from categories order by id asc";
+    $sql = "select * from categories order by id desc";
     $result = mysqli_query($connection, $sql);
 ?>
 <div class="admin-main">
@@ -37,6 +37,7 @@
                     <tr>
                         <th class="table-form-thead">Mã</th>
                         <th class="table-form-thead">Tên</th>
+                        <th class="table-form-thead">Ảnh</th>
                         <th class="table-form-thead">Sửa</th>
                         <th class="table-form-thead">Xóa</th>
                     </tr>
@@ -46,6 +47,9 @@
                     <tr>
                         <td class="table-form-item"><?php echo $each['id'] ?></td>
                         <td class="table-form-item"><?php echo $each['name'] ?></td>
+                        <td class="table-form-item">
+                            <img height="100" src="../../assets/images/categories/<?php echo $each['id']; ?>.png">
+                        </td>
                         <td class="table-form-item">
                             <a href="./form_update.php?id=<?php echo $each['id'] ?>">Sửa</a>
                         </td>
@@ -63,37 +67,13 @@
 
 </div>
 
+    <div id="toast"></div>
+
+
     <script src="../../assets/js/toast.js"></script>
 
-    <?php 
-        if(isset($_SESSION['error'])){
-            $error = $_SESSION['error'];
+    <?php include '../../show_message.php' ?>
     
-            echo "
-                <script type=\"text/javascript\">
-                    showErrorMessage('$error');
-                </script>
-            ";
-
-            unset($_SESSION['error']);
-     
-        }
-    ?>
-
-    <?php 
-        if(isset($_SESSION['success'])){
-            $success = $_SESSION['success'];
-   
-            echo "
-                <script type=\"text/javascript\">
-                    showSuccessMessage('$success')
-                </script>
-            ";
-
-            unset($_SESSION['success']);
-
-        }
-    ?>
 
 </body>
 </html>

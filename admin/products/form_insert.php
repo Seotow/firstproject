@@ -30,25 +30,28 @@
             <h4 class="card-title">Quản lí nhà sản xuất > Thêm</h4>
             
             <div class="table-responsive">
-                <form action="./process_insert.php" id="form_update-product" class="table-form" method="post" enctype="multipart/form-data">
+                <form action="./process_insert.php" id="form_insert-prod" class="table-form" method="post" enctype="multipart/form-data">
                     <div class="form-group table-form-group">
                         <label for="name">Tên sản phẩm</label>
-                        <input type="text" name="name" id="name" placeholder="Tên sản phẩm">
+                        <input rules="required" class="form-control" type="text" name="name" id="name" placeholder="Tên sản phẩm">
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group table-form-group">
                         <label for="image">Ảnh</label>
-                        <input type="file" name="image" id="image" >
+                        <input rules="required" class="form-control" type="file" name="image" id="image" >
+                        <span class="form-message"></span>
                         
                     </div>
                     <div class="form-group table-form-group">
                         <label for="price">Giá</label>
 
-                        <input type="text" name="price" placeholder="Giá">
+                        <input rules="required" class="form-control" type="text" name="price" placeholder="Giá">
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group table-form-group">
                         <label for="description">Mô tả</label>
 
-                        <textarea name="description" placeholder="Mô tả sản phẩm" id="description" rows="3"></textarea> 
+                        <textarea name="description" placeholder="Mô tả( Tùy chọn)" id="description" rows="3"></textarea> 
                     </div>
                     <div class="form-group table-form-group">
                         <label for="manufacturer">Nhà sản xuất</label>
@@ -81,6 +84,17 @@
 
         </div>
     </div>
+
+    <div id="toast"></div>
+
+    <script src="../../assets/js/validator.js"></script>
+    <script src="../../assets/js/toast.js"></script>
+
+    <script>
+        Validator('#form_insert-prod')
+    </script>
+
+    <?php include '../../show_message.php' ?>
 
 </div>
 </body>

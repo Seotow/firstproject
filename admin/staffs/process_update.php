@@ -8,6 +8,17 @@ if(empty($_POST['id'])){
 };
 $id = $_POST['id'];
 
+if( empty($_POST['name'] || empty($_POST['name']) 
+    || empty($_POST['gender']) || empty($_POST['level']) 
+    || empty($_POST['birthdate']) || empty($_POST['phone']) 
+    || empty($_POST['address']) || empty($_POST['email']) 
+    || empty($_POST['password'])
+)){
+    session_start();
+    $_SESSION['error'] = 'Vui lòng điền đầy đủ thông tin';
+    header('location:form_insert.php');
+};
+
 $name = addslashes($_POST['name']);
 $gender = addslashes($_POST['gender']);
 $birthdate = addslashes($_POST['birthdate']);
@@ -35,7 +46,7 @@ mysqli_query($connection, $sql);
 $error = mysqli_error($connection);
 session_start();
 if(empty($error)) {
-    $_SESSION['success'] = 'Xóa thành công';
+    $_SESSION['success'] = 'Sửa thành công';
     header('location:./index.php');
 } else {
     $_SESSION['error'] = 'Lỗi truy vấn';

@@ -1,7 +1,7 @@
 <div class="navigation">
     <ul class="nav-list">
         <li class="list-item brandname">
-            <a href="#">
+            <a href="../index.php">
                 <span class="icon"></span>
                 <span class="title">Trang chủ</span>
             </a>

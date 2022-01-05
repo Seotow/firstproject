@@ -2,7 +2,7 @@
 
 if(empty($_POST['name'])){
     session_start();
-    $_SESSION['error'] = 'Vui lòng điền tên để sửa';
+    $_SESSION['error'] = 'Vui lòng điền đầy đủ thông tin';
     header('location:form_insert.php');
 };
 

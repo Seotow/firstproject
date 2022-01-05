@@ -39,17 +39,14 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Quản lí nhà sản xuất > Sửa</h4>
-            <!-- <p class="card-description">
-                <a class="card-add"href="./form_insert.php">
-                    Thêm nhà sản xuất
-                </a>
-            </p> -->
+            
             <div class="table-responsive">
-                <form action="./process_update.php" id="form_insert-manu" class="table-form" method="post">
+                <form action="./process_update.php" id="form_update-manu" class="table-form" method="post">
                     <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
                     <div class="form-group table-form-group">
                         <label for="name">Tên nhà sản xuất</label>
-                        <input type="text" name="name" id="name" value="<?php echo $each['name'] ?>">
+                        <input rules="required" class="form-control" type="text" name="name" id="name" value="<?php echo $each['name'] ?>">
+                        <span class="form-message"></span>
                     </div>
                     <button type="submit" class="btn btn-primary">Sửa</button>
                     <button class="btn btn-secondary" onclick="history.back()">Hủy</button>
@@ -59,10 +56,21 @@
         }?>
             </div>
         </div>
-        </div>
-
-
     </div>
+
+
+</div>
+
+    <div id="toast"></div>
+
+    <script src="../../assets/js/validator.js"></script>
+    <script src="../../assets/js/toast.js"></script>
+
+    <script>
+        Validator('#form_update-manu')
+    </script>
+
+    <?php include '../../show_message.php' ?>
 
 </body>
 </html>

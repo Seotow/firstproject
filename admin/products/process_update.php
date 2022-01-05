@@ -21,7 +21,7 @@ $image_new = $_FILES['image_new'];
 $file_name = $_POST['image_old'];
 
 if($image_new['size'] > 0) {
-    $folder = "../../assets/images/";
+    $folder = "../../assets/images/products/";
     $file_extension = explode(".", $image_new['name'])[1];
     $file_name = time() . '.' . $file_extension;
     $path_file = $folder . $file_name;

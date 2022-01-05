@@ -41,11 +41,21 @@
             <h4 class="card-title">Quản lí thể loại > Sửa</h4>
 
             <div class="table-responsive">
-                <form action="./process_update.php" id="form_insert-manu" class="table-form" method="post">
+                <form action="./process_update.php" id="form_update-cate" class="table-form" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
                     <div class="form-group table-form-group">
                         <label for="name">Tên thể loại</label>
-                        <input type="text" name="name" id="name" value="<?php echo $each['name'] ?>">
+                        <input rules="required" class="form-control" type="text" name="name" id="name" value="<?php echo $each['name'] ?>">
+                        <span class="form-message"></span>
+
+                    </div>
+                    <div class="form-group table-form-group">
+                        <label for="image_new">Ảnh</label>
+                        <input class="form-control" type="file" name="image_new" id="image_new">
+                        <span class="form-message"></span>
+
+                        <label for="image_old">Hoặc giữ ảnh cũ</label>
+                        <img src="../../assets/images/categories/<?php echo $id; ?>.png" height="100px" >
                     </div>
                     <button type="submit" class="btn btn-primary">Sửa</button>
                     <button class="btn btn-secondary" onclick="history.back()">Hủy</button>
@@ -59,6 +69,15 @@
 
 
     </div>
+    <div id="toast"></div>
+    <script src="../../assets/js/validator.js"></script>
+    <script src="../../assets/js/toast.js"></script>
 
+    <script>
+        Validator('#form_update-cate')
+    </script>
+
+
+    <?php include '../../show_message.php' ?>
 </body>
 </html>
