@@ -2,8 +2,8 @@
     <div class="modal__overlay"></div>
     <div class="modal__body">
     
-        <!-- Regist form -->
-        <form class="auth-form signup" id="signup-form" action="./process_signup.php" method="post">
+        <!-- Signup form -->
+        <form class="auth-form signup" id="signup-form" action="./signup.php" method="post">
             <div class="auth-form__header">
                 <h3 class="auth-form__heading ">Đăng ký</h3>
             </div>
@@ -84,7 +84,7 @@
         </form>  
 
         <!-- Signin form -->         
-        <form class="auth-form signin" id="signin-form" action="./process_signin.php" method="post">
+        <form class="auth-form signin" id="signin-form" action="./signin.php" method="post">
             <div class="auth-form__header">
                 <h3 class="auth-form__heading">Đăng Nhập</h3>
             </div>
@@ -95,13 +95,13 @@
                     <span class="form-message"></span>
                 </div>
                 <div class="auth-form__group form-group">
-                    <input rules="required|password" name="password" type="password" class="form-control auth-form__input" placeholder="Mật khẩu">
+                    <input rules="required" name="password" type="password" class="form-control auth-form__input" placeholder="Mật khẩu">
                     <span class="form-message"></span>
                     <span class="fas fa-eye toggle-password"></span>
                 </div>
-                <div class="auth-form__group form-group form-remember">
-                    <input name="remember" type="checkbox" class="form-control remember" >
-                    <span class="form-remember-text">Ghi nhớ mất khẩu</span>
+                <div class="auth-form__group form-remember">
+                    <input name="remember" type="checkbox" class="remember" >
+                    <span class="form-remember-text">Ghi nhớ đăng nhập</span>
                 </div>
             </div>
 

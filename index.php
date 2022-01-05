@@ -1,4 +1,4 @@
-<?php session_start() ?>
+<?php session_start() ;?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,13 +18,13 @@
         <?php 
             include('./menu.php');
             if(empty($_SESSION['id'])){
-                include('./modal.php');
+                include './modal.php';
             }
         ?>
         <div class="content-section">         
             <div class="grid content">
                 <!-- Category -->
-            <?php include('./categories.php'); ?>
+            <?php include './categories.php'; ?>
             </div>
 
             <!-- Suggestion -->
@@ -48,9 +48,21 @@
         Validator('#signup-form')
         Validator('#signin-form')
     </script>
-    <!-- Fail -->
 
-    <!-- Success -->
+    <?php 
+        if(isset($_SESSION['cart_id'])){
+            $cart_id = $_SESSION['cart_id'];
 
+            echo "<script>
+            $('a[href*=\'id=$cart_id\']').scrollIntoView({behavior: \"auto\", block: \"center\", inline: \"nearest\"})
+            </script>";
+
+            unset($_SESSION['cart_id']);
+            unset($cart_id);
+        }
+    ?>
+    
+
+    <?php include './show_message.php' ?>
 </body>
 </html>  

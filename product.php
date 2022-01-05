@@ -46,11 +46,15 @@
     <div id="toast"></div>
     
     <script src="./assets/js/validator.js"></script>
+    <script src="./assets/js/toast.js"></script>
+
     <script src="./assets/js/index.js"></script>
     <script src="./assets/js/cart.js"></script>
     <script>
-        // Validator('#signup-form')
-        // Validator('#signin-form')
+        Validator('#signup-form')
+        Validator('#signin-form')
     </script>
+
+    <?php include './show_message.php' ?>
 </body>
 </html>  

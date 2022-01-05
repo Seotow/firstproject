@@ -8,7 +8,7 @@
     $sql = 'select count(*) as count from categories';
     $result = mysqli_query($connection, $sql);
     $categories_num = mysqli_fetch_array($result)['count'];
-    $num_cols = floor($categories_num / 2);
+    $num_cols = ceil($categories_num / 2) ;
 ?>
 
 <div class="category">
@@ -22,17 +22,20 @@
                     $name = $ele['name'];
                     $image_id = $ele['id'];
                 ?>
-                <div class="category-item__img" style="background-image: url('./assets/images/Categories/<?php echo $image_id ?>.png' ) ; background-size: contain; background-repeat: no-repeat;" ></div>
+                <div class="category-item__img" style="background-image: url('./assets/images/categories/<?php echo $image_id ?>.png' ) ; background-size: contain; background-repeat: no-repeat;" ></div>
                 <span class="category-item__name"><?php echo $name ?></span>
             </a>
             <a href="#" class="category-item">
                 <?php
-                    $ele = array_shift($categories);
-                    $name = $ele['name'];
-                    $image_id = $ele['id'];
+                    if(sizeof($categories) > 0) {
+                        $ele = array_shift($categories);
+                        $name = $ele['name'];
+                        $image_id = $ele['id'];
+                    
                 ?>
-                <div class="category-item__img" style="background-image: url('./assets/images/Categories/<?php echo $image_id ?>.png' ) ; background-size: contain; background-repeat: no-repeat;" ></div>
+                <div class="category-item__img" style="background-image: url('./assets/images/categories/<?php echo $image_id ?>.png' ) ; background-size: contain; background-repeat: no-repeat;" ></div>
                 <span class="category-item__name"><?php echo $name ?></span>
+                <?php } ?>
             </a>
         
         </div>    

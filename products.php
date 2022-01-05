@@ -56,7 +56,7 @@
 
                     </a>
                     <?php if(isset($_SESSION['id'])){ ?>
-                        <a href="./add_to_cart.php?id=<?php echo $product['id']?>" class="product-hover-footer" onclick="history.go(0)">
+                        <a href="./add_to_cart.php?id=<?php echo $product['id']?>" class="product-hover-footer">
                             Thêm vào giỏ hàng
                         </a>
                     <?php } ?>

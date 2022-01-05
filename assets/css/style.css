@@ -14,6 +14,7 @@
     justify-content: space-between;
     height: var(--header-navbar-height);
     background-color: var(--primary-color);
+
 }
 
 .header__navbar-list {
@@ -764,7 +765,7 @@
 }
 
 .floating-banner__icon {
-    background: url(./assets/images/floatingIcon.png) no-repeat center / cover;
+    background: url(../images/floatingIcon.png) no-repeat center / cover;
     text-decoration: none;
     display: block;
     height: 100%;
@@ -1387,6 +1388,7 @@
     text-align: center;
     cursor: text;
     border-radius: 0;
+    pointer-events: none;
 }
 
 .product-details-addtocart {
@@ -1405,6 +1407,7 @@
     border-radius: 2px;
     box-shadow: 0 1px 1px 0 rgb(0 0 0 / 3%);
     justify-content: center;
+    text-decoration: none;
 }
 
 .product-details-addtocart > span {
@@ -1426,7 +1429,11 @@
     font-size: 14px;
     background-color: var(--primary-color);
     border: 2px solid var(---primary-color);
-    color: #fff
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .product-details-guarantee-img {
@@ -1752,4 +1759,16 @@
     width: 100%;
     color: #777777;
     border-radius: 4px;
+}
+
+.back-to-prev {
+    position: fixed;
+    top: 10vh;
+    left: 5vh;
+    font-size: 50px;
+    color: var(--primary-color)
+}
+
+.back-to-prev-btn {
+    color: var(--primary-color);
 }

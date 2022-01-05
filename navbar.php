@@ -86,9 +86,9 @@
         <?php 
             
             if(isset($_SESSION['id'])){
-                include('./user_menu.php');
+                include('./menu_user.php');
             } else {
-                include('./client_menu.php');
+                include('./menu_client.php');
             }
         ?>
 

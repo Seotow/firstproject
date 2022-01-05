@@ -46,11 +46,11 @@
                         </div>
                     </div>
                     <div class="product-details-content-section product-details-buy">
-                        <button type="button" class="product-details-addtocart">
+                        <a href="./add_to_cart.php?id=<?php echo $id?>" class="product-details-addtocart">
                             <i class="icon-add-to-cart fas fa-cart-plus"></i>
                             <span>Thêm vào giỏ hàng</span>
-                        </button>
-                        <button type="button" class="product-details-buy-btn">Mua ngay</button>
+                        </a>
+                        <a href="#" class="product-details-buy-btn">Mua ngay</a>
                     </div>
                     <div class="product-details-content-section product-details-guarantee">
                         <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/67454c89080444c5997b53109072c9e0.png" class="product-details-guarantee-img">
