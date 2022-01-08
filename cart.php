@@ -29,7 +29,7 @@
                         
                     ?>
                         <li class="header-cart__item">
-                            <a href="#" class="header-cart__item-link">
+                            <a href="product.php?id=<?php echo $id?>" class="header-cart__item-link">
                                 <img src="./assets/images/products/<?php echo $each['image'] ?>" alt="" class="header-cart__item-img">
                                 <span class="header-cart__item-name">
                                     <?php echo $each['name'] ?>
