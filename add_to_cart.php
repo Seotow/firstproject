@@ -1,6 +1,6 @@
 <?php 
 session_start();
-unset($_SESSION['cart']);
+// unset($_SESSION['cart']);
 $id = $_GET['id'];
 $_SESSION['cart_id'] = $id;
 
