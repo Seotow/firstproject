@@ -40,18 +40,7 @@
         
         </div>    
     <?php } ?>
-        <!-- <div class="grid_col-2 category-col">
-            <a href="#" class="col-ten category-item">
-                <div class="category-item__img" ></div>
-                <span class="category-item__name">Thời trang nam</span>
-            </a>
-            <a href="#" class="col-ten category-item">
-                <div class="category-item__img" ></div>
-                <span class="category-item__name">Thời trang nam</span>
-            </a>
-        </div>    
-
-         -->
+       
     </div>
     
 </div>
