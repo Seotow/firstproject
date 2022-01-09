@@ -1,9 +1,11 @@
 <?php 
+    require '../check_admin.php';
 
 if(empty($_POST['name']) || empty($_FILES['image'])){
     session_start();
     $_SESSION['error'] = 'Vui lòng điền đầy đủ thông tin';
     header('location:./form_insert.php');
+    exit;
 };
 
 $name = addslashes($_POST['name']);

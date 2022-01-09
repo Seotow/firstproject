@@ -1,4 +1,7 @@
-<?php session_start() ?>
+<?php 
+    session_start();
+    require '../check_admin.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +29,8 @@
         order by id desc
         limit 25";
         $result = mysqli_query($connection, $sql);
+        mysqli_close($connection);
+
     ?>
 <div class="admin-main">
     <?php include '../topbar.php' ?>
@@ -66,7 +71,7 @@
                             <a href="./form_update.php?id=<?php echo $each['id']; ?>">Sửa</a>
                         </td>
                         <td class="table-form-item">
-                            <a href="./delete.php?id=<?php echo $each['id']; ?>">Xóa</a>
+                            <a onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này chứ')" href="./delete.php?id=<?php echo $each['id']; ?>">Xóa</a>
                         </td>
                     </tr>
                     <?php } ?>

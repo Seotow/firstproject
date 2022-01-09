@@ -84,6 +84,17 @@
         </div>
 
         <?php 
+            if(isset($_COOKIE['remember'])){
+                $id = $_COOKIE['remember'];
+                require_once './admin/connect.php';
+                $sql = "select * from customers 
+                where id ='$id'";
+                $result = mysqli_query($connection, $sql);
+                mysqli_close($connection);
+                $each = mysqli_fetch_array($result);
+                $_SESSION['id'] = $each['id'];
+                $_SESSION['name'] = $each['name'];
+            }
             
             if(isset($_SESSION['id'])){
                 include('./menu_user.php');

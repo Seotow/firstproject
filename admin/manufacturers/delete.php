@@ -1,4 +1,5 @@
 <?php 
+    require '../check_super_admin.php';
 
 if(empty($_GET['id'])){
     $_SESSION['error'] = 'Phải truyền mã để xóa';

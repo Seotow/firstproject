@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    require '../check_admin.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +22,7 @@
         if(empty($_GET['id'])) {
             $_SESSION['error'] = 'Phải truyền mã để sửa';
             header('Location:./index.php');
+            exit;
         };
         $id = $_GET['id'];
 
@@ -25,6 +30,8 @@
         $sql ="select * from categories
         where id = '$id'";
         $result = mysqli_query($connection,$sql);
+        mysqli_close($connection);
+
         $numbers_row = mysqli_num_rows($result);
         if($numbers_row === 1) {
             $each = mysqli_fetch_array($result);
@@ -58,7 +65,7 @@
                         <img src="../../assets/images/categories/<?php echo $id; ?>.png" height="100px" >
                     </div>
                     <button type="submit" class="btn btn-primary">Sửa</button>
-                    <button class="btn btn-secondary" onclick="history.back()">Hủy</button>
+                    <a class="btn btn-secondary" href="./index.php">Hủy</a>
                 </form>
         <?php } else { 
 

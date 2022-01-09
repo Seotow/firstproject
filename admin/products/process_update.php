@@ -1,4 +1,5 @@
 <?php 
+    require '../check_admin.php';
 
 if(empty($_POST['id'])){
     session_start();
@@ -14,6 +15,7 @@ if(empty($_POST['name']) || empty($_POST['image_old'])
     session_start();
     $_SESSION['error'] = 'Phải điền đầy đủ thông tin';
     header('location:form_update.php');
+    exit;
 };
 
 $name = addslashes($_POST['name']);

@@ -1,4 +1,5 @@
 <?php 
+    require '../check_admin.php';
 
 if(empty($_POST['name']) || empty($_FILES['image']) 
 || empty($_POST['price']) || empty($_POST['description'])
@@ -6,6 +7,7 @@ if(empty($_POST['name']) || empty($_FILES['image'])
     session_start();
     $_SESSION['error'] = 'Phải điền đầy đủ thông tin';
     header('location:form_insert.php');
+    exit;
 };
 
 $name = addslashes($_POST['name']);

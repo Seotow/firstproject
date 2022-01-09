@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    require '../check_super_admin.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +29,8 @@
         $sql ="select * from manufacturers
         where id = '$id'";
         $result = mysqli_query($connection,$sql);
+
+        mysqli_close($connection);
         $numbers_row = mysqli_num_rows($result);
         if($numbers_row === 1) {
             $each = mysqli_fetch_array($result);
@@ -49,7 +55,7 @@
                         <span class="form-message"></span>
                     </div>
                     <button type="submit" class="btn btn-primary">Sửa</button>
-                    <button class="btn btn-secondary" onclick="history.back()">Hủy</button>
+                    <a class="btn btn-secondary" href="./index.php">Hủy</a>
                 </form>
         <?php } else { 
 

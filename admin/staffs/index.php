@@ -1,4 +1,7 @@
-<?php session_start() ?>
+<?php 
+    session_start();
+    require '../check_super_admin.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +22,8 @@
     require '../connect.php';
     $sql = "select * from staffs order by id asc";
     $result = mysqli_query($connection, $sql);
+    mysqli_close($connection);
+
 ?>
 <div class="admin-main">
     <?php include '../topbar.php' ?>
@@ -42,44 +47,39 @@
                         <th class="table-form-thead">Số điện thoại</th>
                         <th class="table-form-thead">Địa chỉ</th>
                         <th class="table-form-thead">Email</th>
-                        <th class="table-form-thead">Cấp độ</th>
                         <th class="table-form-thead">Sửa</th>
                         <th class="table-form-thead">Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($result as $each) { ?>
-                    <tr>
-                        <td class="table-form-item"><?php echo $each['id'] ?></td>
-                        <td class="table-form-item"><?php echo $each['name'] ?></td>
-                        <td class="table-form-item"><?php 
-                            if($each['gender'] == 0){
-                                echo 'Nữ';
-                            } else {
-                                echo 'Nam';
-                            }
-                        ?>
-                        </td>
+                    <?php if($each['level'] == 0){?>
+                        <tr>
+                            <td class="table-form-item"><?php echo $each['id'] ?></td>
+                            <td class="table-form-item"><?php echo $each['name'] ?></td>
+                            <td class="table-form-item"><?php 
+                                if($each['gender'] == 0){
+                                    echo 'Nữ';
+                                } else {
+                                    echo 'Nam';
+                                }
+                            ?>
+                            </td>
 
-                        <td class="table-form-item"><?php echo $each['birthdate'] ?></td>
-                        <td class="table-form-item"><?php echo $each['phone'] ?></td>
-                        <td class="table-form-item"><?php echo $each['address'] ?></td>
-                        <td class="table-form-item"><?php echo $each['email'] ?></td>
-                        <td class="table-form-item"><?php 
-                            if($each['level'] == 0){
-                                echo 'Nhân viên';
-                            } else {
-                                echo 'Quản lí';
-                            }
-                        ?>
+                            <td class="table-form-item"><?php echo $each['birthdate'] ?></td>
+                            <td class="table-form-item"><?php echo $each['phone'] ?></td>
+                            <td class="table-form-item"><?php echo $each['address'] ?></td>
+                            <td class="table-form-item"><?php echo $each['email'] ?></td>
+                            
 
-                        <td class="table-form-item">
-                            <a href="./form_update.php?id=<?php echo $each['id'] ?>">Sửa</a>
-                        </td>
-                        <td class="table-form-item">
-                            <a href="./delete.php?id=<?php echo $each['id'] ?>">Xóa</a>
-                        </td>
-                    </tr>
+                            <td class="table-form-item">
+                                <a href="./form_update.php?id=<?php echo $each['id'] ?>">Sửa</a>
+                            </td>
+                            <td class="table-form-item">
+                                <a onclick="return confirm('Bạn chắc chắn muốn xóa nhân viên này chứ')" href="./delete.php?id=<?php echo $each['id'] ?>">Xóa</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     <?php } ?>
                 </tbody>
             </table>

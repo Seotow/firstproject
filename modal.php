@@ -100,8 +100,8 @@
                     <span class="fas fa-eye toggle-password"></span>
                 </div>
                 <div class="auth-form__group form-remember">
-                    <input name="remember" type="checkbox" class="remember" >
-                    <span class="form-remember-text">Ghi nhớ đăng nhập</span>
+                    <input name="remember" id="remember" type="checkbox" class="remember" >
+                    <label for="remember"class="form-remember-text">Ghi nhớ đăng nhập</label>
                 </div>
             </div>
 

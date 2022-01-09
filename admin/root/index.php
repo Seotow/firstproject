@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    require '../check_admin.php'
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,9 +20,16 @@
 <body>
     <?php include '../menu.php' ?>
     <div class="admin-container">
-        
+        <?php include '../topbar.php'?>
 
     </div>
     <script src="../../assets/js/admin.js"></script>
+
+    <div id="toast"></div>
+
+    <script src="../../assets/js/toast.js"></script>
+
+    <?php include '../../show_message.php' ?>
+
 </body>
 </html>

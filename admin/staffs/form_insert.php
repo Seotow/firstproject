@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    require '../check_super_admin.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,11 +42,7 @@
                             <option value="1">Nam</option>
                             <option value="0">Nữ</option>
                         </select>
-                        <label for="level">Cấp độ </label>
-                        <select name="level" id="level">
-                            <option value="1">Quản lí</option>
-                            <option value="0">Nhân viên</option>
-                        </select>
+                    
                     </div>
                     <div class="form-group table-form-group">
                         <label for="birthdate">Ngày sinh</label>
@@ -82,7 +82,7 @@
                     </div>
                     
                     <button type="submit" class="btn btn-primary">Thêm</button>
-                    <button class="btn btn-secondary" onclick="history.back()">Hủy</button>
+                    <a class="btn btn-secondary" href="./index.php">Hủy</a>
                 </form>
             </div>
         </div>

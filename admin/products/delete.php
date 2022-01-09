@@ -1,4 +1,5 @@
 <?php 
+    require '../check_admin.php';
 
 if(empty($_GET['id'])){
     session_start();

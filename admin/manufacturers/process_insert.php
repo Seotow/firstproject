@@ -1,9 +1,11 @@
 <?php 
+    require '../check_super_admin.php';
 
 if(empty($_POST['name'])){
     session_start();
     $_SESSION['error'] = 'Vui lòng điền đầy đủ thông tin';
     header('location:form_insert.php');
+    exit;
 };
 
 $name = addslashes($_POST['name']);

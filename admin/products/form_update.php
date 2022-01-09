@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    require '../check_admin.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +33,8 @@
 
         $sql = "select * from categories ";
         $categories = mysqli_query($connection, $sql);
+        mysqli_close($connection);
+
     ?>
 
 <div class="admin-main">
@@ -103,7 +109,7 @@
 
                     </div>
                     <button type="submit" class="btn btn-primary">Sửa</button>
-                    <button class="btn btn-secondary" onclick="history.back()">Hủy</button>
+                    <a class="btn btn-secondary" href="./index.php">Hủy</a>
                 </form>
             </div>
 

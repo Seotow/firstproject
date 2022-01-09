@@ -1,4 +1,5 @@
 <?php 
+    require '../check_super_admin.php';
 
 if(empty($_POST['id'])){
     session_start();
@@ -25,9 +26,11 @@ session_start();
 if(empty($error)) {
     $_SESSION['success'] = 'Sửa thành công';
     header('location:./index.php');
+    exit;
 } else {
     $_SESSION['error'] = 'Lỗi truy vấn';
     header("location:./form_update.php?id=$id");
+    exit;
 };
 
 mysqli_close($connection);

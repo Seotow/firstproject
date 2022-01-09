@@ -1,4 +1,5 @@
 <?php 
+    require '../check_admin.php';
 
 if(empty($_POST['id'])){
     session_start();
@@ -12,6 +13,7 @@ if(empty($_POST['name']) ){
     session_start();
     $_SESSION['error'] = 'Phải điền đầy đủ thông tin';
     header("location:form_update.php?id=$id");
+    exit;
 };
 
 

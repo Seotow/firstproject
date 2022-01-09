@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    require '../check_super_admin.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +22,7 @@
         if(empty($_GET['id'])) {
             $_SESSION['error'] = 'Phải truyền mã để sửa';
             header('Location:./index.php');
+            exit;
         };
         $id = $_GET['id'];
 
@@ -25,6 +30,8 @@
         $sql ="select * from staffs
         where id = '$id'";
         $result = mysqli_query($connection,$sql);
+        mysqli_close($connection);
+
         $numbers_row = mysqli_num_rows($result);
         if($numbers_row === 1) {
             $each = mysqli_fetch_array($result);
@@ -62,18 +69,7 @@
                                 <option value="0">Nữ</option>
                             <?php }?>
                         </select>
-                        <label for="level">Cấp độ </label>
-                        <select name="level" id="level">
-                            <?php 
-                                if($each['level'] == 0) {
-                            ?>
-                                <option value="1">Quản lí</option>
-                                <option value="0" selected>Nhân viên</option>
-                            <?php } else {?>
-                                <option value="1" selected>Quản lí</option>
-                                <option value="0">Nhân viên</option>
-                            <?php }?>
-                        </select>
+                        
                     </div>
                     <div class="form-group table-form-group">
                         <label for="birthdate">Ngày sinh</label>
@@ -107,7 +103,8 @@
                     </div>
                     
                     <button type="submit" class="btn btn-primary">Sửa</button>
-                    <button class="btn btn-secondary" onclick="history.back()">Hủy</button>
+                    <a class="btn btn-secondary" href="./index.php">Hủy</a>
+                    
                 </form>
         <?php } else { ?>
         
