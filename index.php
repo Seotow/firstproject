@@ -54,7 +54,7 @@
             $cart_id = $_SESSION['cart_id'];
 
             echo "<script>
-            $('a[href*=\'id=$cart_id\']').scrollIntoView({behavior: \"auto\", block: \"center\", inline: \"nearest\"})
+                $('.product a[href*=\'id=$cart_id\']').scrollIntoView({behavior: \"auto\", block: \"center\", inline: \"nearest\"})
             </script>";
 
             unset($_SESSION['cart_id']);
