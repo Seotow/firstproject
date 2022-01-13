@@ -44,14 +44,14 @@
                     <!-- <span class="header-cart__list-view-cart-msg">
                     1 Sản phâm hết hàng
                 </span> -->
-                    <a href="./view_all_cart.php" class="btn btn-primary btn-view-cart">Xem giỏ hàng</a>
+                    <a href="./cart_view_all.php" class="btn btn-primary btn-view-cart">Xem giỏ hàng</a>
                 </div>
 
             </div>
     <?php
     }
     ?>
-    <a href="./view_all_cart.php">
+    <a href="./cart_view_all.php">
         <i class="header-cart__icon fas fa-cart-plus"></i>
         <?php if(isset($_SESSION['quantity'])){ ?>
             <span class="header-cart__quantity"><?php echo $_SESSION['quantity'] ?></span>

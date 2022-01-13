@@ -1765,10 +1765,51 @@
     position: fixed;
     top: 10vh;
     left: 5vh;
-    font-size: 50px;
+    font-size: 20px;
     color: var(--primary-color)
 }
 
-.back-to-prev-btn {
+.back-to-prev-btn,
+.scroll-to-top-btn {
     color: var(--primary-color);
+    padding: 10px;
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 20vh;
+    right: 5vh;
+    font-size: 20px;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.total {
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    width: 100%;
+    height: 80px;
+    box-shadow: 0 0.0625rem 3.125rem 0 rgb(0 0 0 / 20%);
+}
+
+.total span {
+    display: block;
+    padding: 10px 20px;
+    text-align: right;
+    font-size: 30px;
+    height: 30px;
+    color: var(--primary-color);
+}
+
+.total button {
+    float: right;
+    color: var(--primary-color);
+    margin: 10px 20px;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.cart-main {
+    padding-bottom: 80px;
 }

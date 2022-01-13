@@ -3,6 +3,7 @@
 $name = addslashes($_POST['name']);
 $email = $_POST['email'];
 $password = addslashes($_POST['password']);
+$phone = addslashes($_POST['phone']);
 
 require './admin/connect.php';
 $sql = "select count(*) from customers
@@ -12,12 +13,23 @@ $result = mysqli_query($connection, $sql);
 $number_rows = mysqli_fetch_array($result)['count(*)'];
 if($number_rows == 1) {
     $_SESSION['error'] = 'Email đã tồn tại';
-    header("location:index.phpi");
+    header("location:index.php");
     exit;
 };
 
-$sql = "insert into customers (name, email, password)
-values('$name', '$email', '$password')";
+$sql = "select count(*) from customers
+where email = '$phone'";
+
+$result = mysqli_query($connection, $sql);
+$number_rows = mysqli_fetch_array($result)['count(*)'];
+if($number_rows == 1) {
+    $_SESSION['error'] = 'Số điện thoại đã tồn tại';
+    header("location:index.php");
+    exit;
+};
+
+$sql = "insert into customers (name, phone, email, password)
+values('$name', $phone, '$email', '$password')";
 mysqli_query($connection, $sql);
 
 $sql = "select id from customers

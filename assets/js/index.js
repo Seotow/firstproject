@@ -7,8 +7,6 @@ const $$ = document.querySelectorAll.bind(document)
 // Modal
 const modal = $('.modal')
 const overLay = $('.modal__overlay')
-const signInBtns = $$('.btn-signin')
-const signUpBtns = $$('.btn-signup')
 const signUpForm = $('.auth-form.signup')
 const signInForm = $('.auth-form.signin')
 const togglePasswords = $$('.toggle-password')
@@ -28,24 +26,19 @@ if(togglePasswords) {
     }
 }
 
-function signUp(e) {
-    e.preventDefault()
+function signUp() {
+    
     modal.classList.add('active')
     signUpForm.classList.add('active')
     signInForm.classList.remove('active')
 }
 
-function signIn(e) {
-    e.preventDefault()
+function signIn() { 
     modal.classList.add('active')
     signInForm.classList.add('active')
     signUpForm.classList.remove('active')
 }
-if(!!modal && !!signUpBtns && !!signInBtns) {
-    for(let i = 0; i < 2; i++) {
-        signUpBtns[i].onclick = signUp
-        signInBtns[i].onclick = signIn
-    }
+if(modal) {
     overLay.onclick = () => {
         modal.classList.remove('active')
     }

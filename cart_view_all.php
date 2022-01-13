@@ -14,13 +14,13 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <div class="main">
+    <div class="cart-main">
         <?php 
             include('./navbar.php');
             if(empty($_SESSION['id'])){
                 $_SESSION['error'] = 'Vui lòng đăng nhập';
                 header('Location: ' . $_SERVER["HTTP_REFERER"] );
-
+                exit;
             }
         ?>
         
@@ -52,9 +52,11 @@
 
                     <?php 
                         if(isset($_SESSION['id']) || isset($_SESSION['cart'])){
-                        $cart = $_SESSION['cart'];
-                        require './admin/connect.php';
-                        foreach ($cart as $id => $each) {
+                            $cart = $_SESSION['cart'];
+                            require './admin/connect.php';
+                            $sum = 0;
+                            foreach ($cart as $id => $each) {
+
                     ?>
                         <div class="cart-item">
                             <div class="cart-product">
@@ -74,7 +76,11 @@
                                 <a href="./cart_update_quantity.php?id=<?php echo $id ?>&type=increase" class="product-details-btn plus-btn"><svg width="10px" enable-background="new 0 0 10 10" viewBox="0 0 10 10" x="0" y="0" ><polygon points="10 4.5 5.5 4.5 5.5 0 4.5 0 4.5 4.5 0 4.5 0 5.5 4.5 5.5 4.5 10 5.5 10 5.5 5.5 10 5.5"></polygon></svg></a>
                             </div>                
                             <div class="cart-sum">
-                                đ<?php echo $each['quantity'] * $each['price'] ?>
+                                đ<?php 
+                                    $result = $each['quantity'] * $each['price'];
+                                    $sum += $result;
+                                    echo $result
+                                ?>
                             </div>                
                             <div class="cart-action">
                                 <a href="./cart_delete.php?id=<?php echo $id ?>" class="cart-delete-action">Xóa</a>
@@ -98,22 +104,93 @@
     
 
 
-    <div class="floating-banner">
-        <a href="#" class="floating-banner__icon"></a>
+    <div class="scroll-to-top">
+        <a class="scroll-to-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+            <i class="fas fa-arrow-up"></i>
+        </a>
     </div>
 
+    <footer class="total">
+        <span>Thành tiền: đ<?php echo $sum ?></span>
+        <button class='btn btn-primary' onclick="showPayment()">Thanh toán</button>
+    </footer>
+
     <div id="toast"></div>
+    <div class="modal">      
+        <div class="modal__overlay"></div>
+        <div class="modal__body">
+            <form class="auth-form payment" id="payment-form" action="./process_checkout.php" method="post">
+                <?php  ?>
+                <div class="auth-form__header">
+                    <h3 class="auth-form__heading ">Thanh toán</h3>
+                </div>
+                <?php 
+                    $customer_id = $_SESSION['id'];
+                    $sql = "select * from customers where id ='$customer_id'";
+                    $result = mysqli_query($connection, $sql);
+                    $customer = mysqli_fetch_array($result);
+                ?>
+                <div class="auth-form__form">
+                    <div class="auth-form__group form-group">
+                        <label for="receiver_name">Tên người nhận</label>
+                        <input rules="required" name="receiver_name" id="receiver_name" type="text" class="form-control auth-form__input" value="<?php echo $customer['name']?>">
+                        <span class="form-message"></span>
+
+                    </div>
+                    <div class="auth-form__group form-group">
+                        <label for="receiver_phone">Số điện thoại người nhận</label>
+                        <input rules="required" name="receiver_phone" id="receiver_phone" type="text" class="form-control auth-form__input" value="<?php echo $customer['phone']?>">
+                        <span class="form-message"></span>
+
+                    </div>
+                    <div class="auth-form__group form-group">
+                        <label for="receiver_address">Địa chỉ người nhận</label>
+                        <input rules="required" name="receiver_address" id="receiver_address" type="text" class="form-control auth-form__input" value="<?php echo $customer['address']?>">
+                        <span class="form-message"></span>
+
+                    </div>
+                    <div class="auth-form__group form-group">
+                        <label for="note">Ghi chú</label>
+                        <textarea name="note" id="note" cols="20" rows="5" placeholder="Tùy chọn"></textarea>
+                        <span class="form-message"></span>
+
+                    </div>
+                    
+                    
+                </div>
+                <div class="auth-form__control">
+                    <button class="btn btn-primary btn--next">TIẾP THEO</button>
+                </div>
+            </form> 
+    
+        </div>
+    </div>
     
     <script src="./assets/js/validator.js"></script>
     <script src="./assets/js/toast.js"></script>
-
     <script src="./assets/js/index.js"></script>
     <script>
-        Validator('#signup-form')
-        Validator('#signin-form')
+        Validator('#payment-form')
     </script>
-    <!-- <script src="./assets/js/cart.js"></script> -->
-    <!-- Fail -->
+    <script>
+        function showPayment(){
+            $('.modal').classList.add('active')
+            $('.auth-form.payment').classList.add('active')
+        }
+    </script>
+
+    <?php 
+        if(isset($_SESSION['cart_id'])){
+            $cart_id = $_SESSION['cart_id'];
+
+            echo "<script>
+                $('a[href*=\'id=$cart_id\']').scrollIntoView({behavior: \"auto\", block: \"center\", inline: \"nearest\"})
+            </script>";
+
+            unset($_SESSION['cart_id']);
+            unset($cart_id);
+        }
+    ?>
 
     <?php include './show_message.php'?>
 </body>

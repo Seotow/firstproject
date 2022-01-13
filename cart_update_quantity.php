@@ -15,6 +15,8 @@ if($_GET['type'] == 'decrease'){
 
 }
 
+$_SESSION['cart_id'] = $id;
+
 
 
 header('Location: ' . $_SERVER["HTTP_REFERER"] );

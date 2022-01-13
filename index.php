@@ -35,8 +35,10 @@
     
 
 
-    <div class="floating-banner">
-        <a href="#" class="floating-banner__icon"></a>
+    <div class="scroll-to-top">
+        <a class="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+            <i class="fas fa-arrow-up"></i>
+        </a>
     </div>
 
     <div id="toast"></div>

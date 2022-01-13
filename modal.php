@@ -15,6 +15,11 @@
 
                 </div>
                 <div class="auth-form__group  form-group">
+                    <input rules="required" name="phone" type="text" class="form-control auth-form__input" placeholder="Số điện thoại">
+                    <span class="form-message"></span>
+
+                </div>
+                <div class="auth-form__group  form-group">
                     <input rules="required|email" name="email" type="email" class="form-control auth-form__input" placeholder="Email">
                     <span class="form-message"></span>
 
@@ -79,7 +84,7 @@
             
             <div class="auth-form__switch">
                 <span class="auth-form__switch-text">Bạn đã có tài khoản?</span>
-                <a href="" class="auth-form__text-link btn-signin">Đăng nhập</a>
+                <span onclick="signIn()" class="auth-form__text-link btn-signin">Đăng nhập</span>
             </div>
         </form>  
 
@@ -146,7 +151,7 @@
             </div>
             <div class="auth-form__switch">
                 <span class="auth-form__switch-text">Bạn mới biết đến ?</span>
-                <a href="" class="auth-form__text-link btn-signup">Đăng ký</a>
+                <span onclick="signUp()" class="auth-form__text-link btn-signup">Đăng ký</span>
             </div>
         </form>  
     </div>
