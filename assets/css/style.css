@@ -1737,6 +1737,7 @@
 .table-form-item {
     font-size: 16px;
     padding: 18px 22px;
+    line-height: 24px;
 }
 
 .table-form-group {
@@ -1812,4 +1813,14 @@
 
 .cart-main {
     padding-bottom: 80px;
+    min-height: 100vh;
+}
+
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+}
+.empty-cart-msg {
+    margin: 20px 0;
+    font-size: 30px;
 }
