@@ -50,8 +50,17 @@
                 <div class="grid__row">
                     <div class="cart-content cart-list">
 
-                    <?php 
-                        if(isset($_SESSION['id']) || isset($_SESSION['cart'])){
+                    <?php if(!isset($_SESSION['cart'])){ ?>
+                        <div class="empty-cart">
+                            <!-- Empty -->
+                            <img src="./assets/images/nocart.png" class="empty-cart-img">
+                            <span class="empty-cart-msg">
+                                Chưa có sản phẩm
+                            </span>
+
+                        </div>
+                    <?php } else {
+    
                             $cart = $_SESSION['cart'];
                             require './admin/connect.php';
                             $sum = 0;
@@ -104,16 +113,17 @@
     
 
 
+    <?php if(isset($_SESSION['cart'])) {?>
     <div class="scroll-to-top">
         <a class="scroll-to-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
             <i class="fas fa-arrow-up"></i>
         </a>
     </div>
-
     <footer class="total">
         <span>Thành tiền: đ<?php echo $sum ?></span>
         <button class='btn btn-primary' onclick="showPayment()">Thanh toán</button>
     </footer>
+    <?php } ?>
 
     <div id="toast"></div>
     <div class="modal">      

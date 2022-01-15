@@ -19,7 +19,7 @@ $cart = $_SESSION['cart'];
 $customer_id = $_SESSION['id'];
 
 $sql = "update customers 
-set address = $receiver_address
+set address = '$receiver_address'
 where id ='$customer_id'";
 mysqli_query($connection, $sql);
 
