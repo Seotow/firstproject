@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 09, 2022 at 07:31 AM
+-- Generation Time: Jan 15, 2022 at 04:01 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -31,12 +31,22 @@ SET time_zone = "+00:00";
 CREATE TABLE `bills` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `time_ordered` datetime NOT NULL,
   `receiver_name` varchar(50) NOT NULL,
   `receiver_phone` varchar(15) NOT NULL,
   `receiver_address` varchar(200) NOT NULL,
-  `note` varchar(200) DEFAULT NULL
+  `note` varchar(200) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL,
+  `total_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bills`
+--
+
+INSERT INTO `bills` (`id`, `customer_id`, `receiver_name`, `receiver_phone`, `receiver_address`, `note`, `created_at`, `status`, `total_price`) VALUES
+(4, 1, 'Nguyễn Trung Hiếu', '03456789', 'việt nam', 'ád', '2022-01-13 13:38:51', 1, 2299333),
+(5, 1, 'Nguyễn Trung Hiếu', '03456789', 'hn,vietnam', '', '2022-01-13 13:52:04', -1, 1727758);
 
 -- --------------------------------------------------------
 
@@ -60,7 +70,6 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 (9, 'Máy Ảnh & Máy Quay Phim'),
 (7, 'Máy Tính & Laptop'),
 (4, 'Mẹ & Bé'),
-(35, 'Nguyễn Trung Hiếu'),
 (6, 'Nhà Cửa & Đời Sống'),
 (20, 'Nhà Sách Online'),
 (19, 'Ô Tô & Xe Máy & Xe Đạp'),
@@ -87,16 +96,19 @@ CREATE TABLE `customers` (
   `name` varchar(50) NOT NULL,
   `gender` bit(1) DEFAULT NULL,
   `birthdate` date DEFAULT NULL,
+  `phone` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(200) NOT NULL
+  `password` varchar(200) NOT NULL,
+  `address` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `name`, `gender`, `birthdate`, `email`, `password`) VALUES
-(1, 'Nguyễn Trung Hiếu', NULL, NULL, 'nguyenhieu@gmail.com', '123456');
+INSERT INTO `customers` (`id`, `name`, `gender`, `birthdate`, `phone`, `email`, `password`, `address`) VALUES
+(1, 'Nguyễn Trung Hiếu', NULL, NULL, '03456789', 'nguyenhieu@gmail.com', '123456', 'hn,vietnam'),
+(2, 'Nguyễn Trung Hiếu', NULL, NULL, '12345', 'trunghieu15004@gmail.com', '123456', NULL);
 
 -- --------------------------------------------------------
 
@@ -109,6 +121,20 @@ CREATE TABLE `details_bills` (
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `details_bills`
+--
+
+INSERT INTO `details_bills` (`bill_id`, `product_id`, `quantity`) VALUES
+(4, 11, 1),
+(4, 23, 1),
+(4, 44, 1),
+(4, 68, 1),
+(5, 30, 1),
+(5, 57, 1),
+(5, 75, 1),
+(5, 103, 1);
 
 -- --------------------------------------------------------
 
@@ -129,6 +155,7 @@ INSERT INTO `manufacturers` (`id`, `name`) VALUES
 (19, 'Appled'),
 (2, 'Appleđ'),
 (8, 'CD project Blue'),
+(20, 'hieu'),
 (9, 'Lokia'),
 (18, 'Nguyen Hieu'),
 (15, 'Nguyễn Trung Hiếu'),
@@ -375,8 +402,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `image`, `price`, `manufact
 (332, '1 kg túi nilon gói hàng', '', '1640439078569.jpg', 849434, 9, 20),
 (333, 'Keo nến nhỏ lớn đủ size', '', '1640439078570.jpg', 613603, 5, 20),
 (334, 'BÚT CỌ MẦU NƯỚC SAKURA KOI COLOURING BRUSH PEN A', 'none', '1640439078571.jpg', 473033, 2, 20),
-(335, 'Gọt bút chì hoạt hình siêu dễ thương', '', '1640439078573.jpg', 804746, 4, 20),
-(337, 'Nguyễn Trung Hiếu', 'asdf', '1641021856.jpg', 6229050, 19, 18);
+(335, 'Gọt bút chì hoạt hình siêu dễ thương', '', '1640439078573.jpg', 804746, 4, 20);
 
 -- --------------------------------------------------------
 
@@ -388,7 +414,7 @@ CREATE TABLE `staffs` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `gender` tinyint(1) NOT NULL DEFAULT '0',
-  `birthdate` date DEFAULT NULL,
+  `birthdate` timestamp NULL DEFAULT NULL,
   `phone` varchar(15) NOT NULL,
   `address` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
@@ -401,9 +427,10 @@ CREATE TABLE `staffs` (
 --
 
 INSERT INTO `staffs` (`id`, `name`, `gender`, `birthdate`, `phone`, `address`, `email`, `password`, `level`) VALUES
-(1, 'hieu', 0, '2004-03-15', '12345', 'hanoi', 'trunghieu@gmail.com', '1234123', 0),
-(2, 'Nguyen Hieu', 1, '2022-01-05', '0327272297', 'Ha Noi, Viet Nam', 'trunghieu15004@gmail.com', 'CzTk42Gve8TzVp6', 1),
-(3, 'khong phai hieu', 1, '2022-01-02', '0378050602', '233 gì gì đó', 'gmail@gmail.com', '123456', 0);
+(1, 'hieu', 0, '2004-03-14 17:00:00', '12345', 'hanoi', 'trunghieu@gmail.com', '1234123', 0),
+(2, 'Nguyen Hieu', 1, '2022-01-04 17:00:00', '0327272297', 'Ha Noi, Viet Nam', 'trunghieu152004@gmail.com', 'CzTk42Gve8TzVp6', 1),
+(3, 'khong phai hieu', 1, '2022-01-01 17:00:00', '0378050602', '233 gì gì đó', 'gmail@gmail.com', '123456', 0),
+(4, 'hieu4', 1, '2007-03-14 17:00:00', '123', '123', 'trunghieu15200444@gmail.com', '123456', 0);
 
 --
 -- Indexes for dumped tables
@@ -428,7 +455,8 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `phone` (`phone`);
 
 --
 -- Indexes for table `details_bills`
@@ -469,37 +497,37 @@ ALTER TABLE `staffs`
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `manufacturers`
 --
 ALTER TABLE `manufacturers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=338;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=336;
 
 --
 -- AUTO_INCREMENT for table `staffs`
 --
 ALTER TABLE `staffs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
