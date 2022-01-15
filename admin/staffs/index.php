@@ -66,7 +66,7 @@
                             ?>
                             </td>
 
-                            <td class="table-form-item"><?php echo $each['birthdate'] ?></td>
+                            <td class="table-form-item"><?php echo date( "m/d/Y", strtotime($each['birthdate'])); ?></td>
                             <td class="table-form-item"><?php echo $each['phone'] ?></td>
                             <td class="table-form-item"><?php echo $each['address'] ?></td>
                             <td class="table-form-item"><?php echo $each['email'] ?></td>

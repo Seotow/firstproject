@@ -1,7 +1,6 @@
 <?php 
     require '../check_super_admin.php';
-
-if( empty($_POST['name'] || empty($_POST['name']) 
+if( empty($_POST['name'] 
     || empty($_POST['gender'])  
     || empty($_POST['birthdate']) || empty($_POST['phone']) 
     || empty($_POST['address']) || empty($_POST['email']) 
@@ -15,7 +14,7 @@ if( empty($_POST['name'] || empty($_POST['name'])
 
 $name = addslashes($_POST['name']);
 $gender  = addslashes($_POST['gender']);
-$birthdate  = addslashes($_POST['birthdate']);
+$birthdate  = $_POST['birthdate'];
 $phone = addslashes($_POST['phone']);
 $address = addslashes($_POST['address']);
 $email = addslashes($_POST['email']);
