@@ -1824,3 +1824,37 @@
     margin: 20px 0;
     font-size: 30px;
 }
+
+.purchase {
+}
+
+.purchase-col {
+    text-decoration: none;
+    text-align: center;
+    flex: 1;
+    height: 40px;
+    line-height: 40px;
+    color: #555;
+}
+
+.purchase-product {
+    display: flex;
+
+}
+
+.purchase-bill {
+    width: 100%;
+    background-color: #fff;
+
+}
+
+.purchase-header {
+    margin-top: 16px;
+    line-height: 24px;
+    color: var(--primary-color);
+    text-align: right;
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-size: 16px;
+    padding: 10px 20px
+}

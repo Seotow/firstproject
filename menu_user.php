@@ -8,7 +8,7 @@
         <a href="#" class="header__navbar-user-option-link">
             Tài khoản của tôi
         </a>
-        <a href="#" class="header__navbar-user-option-link">
+        <a href="./purchase.php?status=all" class="header__navbar-user-option-link">
             Đơn mua
         </a>
         <a href="./signout.php" class="header__navbar-user-option-link header__navbar-user-option-link--separate">

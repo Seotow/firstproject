@@ -51,6 +51,13 @@
         Validator('#signin-form')
     </script>
 
+    <script>
+        // $(document).ready(function(){
+        //     $('')
+        // })
+    </script>
+
+
     <?php 
         if(isset($_SESSION['cart_id'])){
             $cart_id = $_SESSION['cart_id'];

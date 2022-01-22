@@ -27,12 +27,6 @@
         </div>
       
 
-        
-    
-
-
-    <div class="floating-banner">
-        <a href="#" class="floating-banner__icon"></a>
     </div>
 
     <div id="toast"></div>
@@ -44,7 +38,6 @@
     </div>
 
     <div id="toast"></div>
-    
     <script src="./assets/js/validator.js"></script>
     <script src="./assets/js/toast.js"></script>
 
